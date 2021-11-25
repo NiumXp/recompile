@@ -3,7 +3,7 @@ __all__ = (
 )
 
 import typing as t
-import utils
+from . import utils
 
 
 def swap(
