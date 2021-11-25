@@ -44,8 +44,3 @@ def recompile(
         seq = [*seq]
 
     ...
-
-
-b = b"1234"
-r = swap(b, 0, 2, arg=False)
-print(r)
