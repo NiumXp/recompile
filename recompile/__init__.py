@@ -23,17 +23,22 @@ def swap(
 
 
 def replace(
-    code,
+    code: utils.Code,
     idx_or_op,
     idx_or_op_or_seq,
     **options,
 ):
-    carry = options.pop("ignore_arg", True) + 1
+    c = options.pop("count", None)
 
-    if utils.iscode(code):
-        code = code.co_code
+    b = utils.bytearray_(code)
 
-    bs = code
+    x, _ = utils._idxop(b, idx_or_op)
+    y = utils._idxopseq(b, idx_or_op_or_seq)
+
+    if not utils.isop(y):
+        return b.replace(x, y, c)
+
+    raise NotImplementedError()
 
 
 def recompile(
