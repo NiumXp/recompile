@@ -1,4 +1,8 @@
+from itertools import *
+
 from .types_ import *
+
+T = TypeVar('T', bound=Any)
 
 
 def isint(obj: Any) -> bool:
@@ -50,8 +54,20 @@ def _idxop(
     raise ValueError("unexpected index")
 
 
+def isop(obj: Any) -> bool:
+    return (
+        isinstance(obj, tuple)
+        and len(obj) == 2
+        and isinstance(obj[1], str)
+    )
+
+
 def _idxopseq(
     b: bytearray,
     i: IdxOrOpOrSeq,
-) -> Iterable[OpCode]:
-    ...
+) -> Union[OpCode, Iterable[OpCode]]:
+    if isop(i):     return i
+    if not isit(i): return _idxop(b, i)
+
+    for x in i:
+        yield _idxop(b, x)
