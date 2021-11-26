@@ -35,3 +35,23 @@ def isodd(
     if reduce is None:
         reduce = all
     return reduce(map(_odd, obj))
+
+
+iscall = callable
+
+
+def _idxop(
+    b: bytearray,
+    i: IdxOrOp,
+) -> OpCode:
+    if iscall(i):       return i()
+    if not isint(i):    return i
+    if not _odd(i):     return b[i], b[i+1]
+    raise ValueError("unexpected index")
+
+
+def _idxopseq(
+    b: bytearray,
+    i: IdxOrOpOrSeq,
+) -> Iterable[OpCode]:
+    ...
