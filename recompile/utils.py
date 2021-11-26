@@ -1,16 +1,4 @@
-from typing import (
-    Callable,
-    Iterable,
-    Any,
-    Sequence,
-    Union,
-)
-from types import (
-    CodeType,
-    FrameType,
-)
-
-Code = Union[bytes, bytearray, CodeType, FrameType]
+from .types_ import *
 
 
 def isint(obj: Any) -> bool:
