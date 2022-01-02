@@ -1,6 +1,10 @@
 # recompile
 A Python library to recompile code objects and other things with frame objects
 
+## TO-DO
+- [ ] Support all Python 3 versions;
+- [ ] Support Python 2 (only 2.7.*);
+
 ## Install
 ...
 
