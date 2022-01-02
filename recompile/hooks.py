@@ -9,16 +9,15 @@ from typing import (
     Dict,
     Callable,
 )
+from sys import version_info as version
 
-from .utils import version
+try:
+    from typing_extensions import TypeAlias
+except (ImportError, ValueError):
+    TypeAlias = Any
 
-if version(3, 10):
+if version >= (3, 10, 0):
     from typing import TypeAlias  # type: ignore
-else:
-    try:
-        from typing_extensions import TypeAlias
-    except (ImportError, ValueError):
-        TypeAlias = Any
 
 HookHandler = Callable[..., Any]  # type: TypeAlias
 
